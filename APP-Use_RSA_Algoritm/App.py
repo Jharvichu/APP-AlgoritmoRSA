@@ -58,10 +58,14 @@ def iniciarSesion():
     contra = password.get()
     User = Usuarios(nombre,contra)
     test = Buscar(User)
-    if test == True:
+    if test == 1:
         MessageBox.showinfo("Conectado","Se inicio sesion correctamente")
-    if test == False: 
+    elif test == 2: 
         MessageBox.showerror("Error","Contraseña Incorrecta")
+    elif test == 3:
+        MessageBox.showerror("Error","Usuario No Encontrado")
+    else:
+        MessageBox.showerror("Error", "Vuelva a iniciar la aplicación")
 
 ###Funcion para registrar
 #Crea ol objeto User con su contraseña (sin encriptar)
@@ -70,6 +74,7 @@ def registrar():
     contra = password.get()
     newUser = Usuarios(nombre,contra)
     Encriptar(newUser)
+    MessageBox.showinfo("Nuevo Usuario creado", "Se ha guardado y encriptado con éxito a un nuevo usuario y contraseña")
 
 def Encriptar(newUser):
     p = generate_prime()
@@ -94,11 +99,11 @@ def Buscar(User):
         contra_desencript = decrypt(contra_encript,keyprivate)
         if(User.contrasena == contra_desencript) :
             print("Contraseña desencriptada : ",contra_desencript)
-            return True
+            return 1
         else :
-            return False
+            return 2
     else :
-        return False
+        return 3
 
         
 
