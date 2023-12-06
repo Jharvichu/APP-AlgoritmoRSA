@@ -15,13 +15,7 @@ class Usuarios():
         a = encrypt(self.contrasena,KeyPublic)
         return a
     
-    '''
-    Inicio secion
-    solamente verifica si la contraseña es o no lo que se define antes
-    y cambia el estado de conectado
-    '''
     def conectar(self,contrasenia):
-
         miContrasena = contrasenia
         if miContrasena == self.contrasena :
             print("Esta conectado")
