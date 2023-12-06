@@ -1,5 +1,4 @@
 import random 
-
 #Algoritmo de potenciacion rapida
 def Potencia(x,n):
     p = x
@@ -104,7 +103,6 @@ def generate_key_pair(p,q):
   d = multiplicative_inverse(e, phi)
   return ((e, n), (d, n))
 
-
 #Encriptar un texto   C = (M^e) mod n
 def encrypt(words,key_public):
     e, n = key_public
@@ -131,3 +129,33 @@ def decrypt(cifra,key_private):
         lista.append(letra)
         i += 1
     return ''.join(lista)
+
+#Reemplazar user.txt_path por la dirección del archivo de texto de usuarios
+def getUsers(usertxt_path):
+    userTable=open(usertxt_path, 'r')
+    array_user = userTable.read().split('\n')
+    userTable.close()
+    return array_user
+
+#Reemplazar password.txt_path por la dirección del archivo de texto de las contraseñas
+def getPasswords(passwordtxt_path):
+    passwordTable = open(passwordtxt_path, 'r')
+    array_pass_encrypt = passwordTable.read().split('\n')
+    passwordTable.close()
+    return array_pass_encrypt
+
+def getKeys(Keystxt_path):
+    passwordTable = open(Keystxt_path, 'r')
+    array_pass_encrypt = passwordTable.read().split('\n')
+    passwordTable.close()
+    return array_pass_encrypt
+
+def saveInformation(user, usertxt_path, psw, passwordtxt_path):
+    userTable=open(usertxt_path,'a')
+    userTable.write('\n'+user)
+    pswTable = open(passwordtxt_path,'a')
+    pswTable.write('\n'+' '.join(map(str, psw)))
+
+def saveKeys(keyPublic,keyPrivate,primo,keystxt_path):
+    userTable=open(keystxt_path,'a')
+    userTable.write('\n'+str(keyPublic)+'\t'+str(keyPrivate)+'\t'+str(primo))

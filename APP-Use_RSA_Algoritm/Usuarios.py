@@ -1,3 +1,5 @@
+from Algorithms import encrypt
+
 class Usuarios():
     cant_users = 0
     def __init__(self,nombre,contrasena):
@@ -9,9 +11,16 @@ class Usuarios():
 
         Usuarios.cant_users+=1  
     
-    #iniciar sesion
+    def CifrarContraseña(self,KeyPublic):
+        a = encrypt(self.contrasena,KeyPublic)
+        return a
+    
+    '''
+    Inicio secion
+    solamente verifica si la contraseña es o no lo que se define antes
+    y cambia el estado de conectado
+    '''
     def conectar(self,contrasenia):
-        #AQUI PUEDE IR 
 
         miContrasena = contrasenia
         if miContrasena == self.contrasena :
@@ -21,18 +30,6 @@ class Usuarios():
             self.cant_users -= 1
             print("Esta mal su contraseña, intente denuevo")
 
-    def desconectar(self):
-        if self.conectado :
-            print("")
-        else :
-            print("")
-    
-    def __str__(self):
-        if self.conectado:
-            conect = "Conectado"
-        else :
-            conect = "Desconectado"
-        return f"Mi nombre de usuario es {self.nombre} y estoy {conect}"
 
 
 

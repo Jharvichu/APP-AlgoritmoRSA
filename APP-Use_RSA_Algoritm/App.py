@@ -2,11 +2,15 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox as MessageBox
 from Usuarios import Usuarios
+from Algorithms import *
 
 root = Tk()
 #Variables globales
 user = StringVar()
 password = StringVar()
+usertxtpath = "user.txt"
+passwordtxtpath = "password.txt"
+keystxtpath = "keys.txt"
 
 def createGUI():
     #Ventana principal y su nombre
@@ -50,20 +54,55 @@ def createGUI():
 
 #Funcion para iniciar secion
 def iniciarSesion():
-    user1.conectar(password.get())
-    if user1.conectado == True:
+    nombre = user.get()
+    contra = password.get()
+    User = Usuarios(nombre,contra)
+    test = Buscar(User)
+    if test == True:
         MessageBox.showinfo("Conectado","Se inicio sesion correctamente")
-    if user1.conectado == False: 
+    if test == False: 
         MessageBox.showerror("Error","Contraseña Incorrecta")
 
 ###Funcion para registrar
 #Crea ol objeto User con su contraseña (sin encriptar)
 def registrar():
     nombre = user.get()
-    contra = password.get() 
+    contra = password.get()
     newUser = Usuarios(nombre,contra)
-    personas.append(newUser)
+    Encriptar(newUser)
 
+def Encriptar(newUser):
+    p = generate_prime()
+    q = generate_prime()
+    key_public, key_private = generate_key_pair(p,q)
+    saveKeys(key_public[0],key_private[0],key_private[1],keystxtpath)
+    saveInformation(newUser.nombre,usertxtpath,newUser.CifrarContraseña(key_public),passwordtxtpath)
+    print("usuario: "+newUser.nombre)
+    print("contra: "+newUser.contrasena)
+    print("Primos p = %d y q = %d"%(p,q))
+    print("Llaves generadas: "+str(key_public)+" "+str(key_private))   
+    print("Contraseña encriptada",newUser.CifrarContraseña(key_public))
+
+def Buscar(User):
+    personas = getUsers(usertxtpath)
+    contraseñas = [list(map(int, fila.split())) for fila in getPasswords(passwordtxtpath)]
+    llaves = [list(map(int, fila.split())) for fila in getKeys(keystxtpath)]
+    if User.nombre in personas:
+        index = personas.index(User.nombre)
+        contra_encript = contraseñas[index]
+        keyprivate = (llaves[index][1],llaves[index][2])
+        contra_desencript = decrypt(contra_encript,keyprivate)
+        if(User.contrasena == contra_desencript) :
+            print("Contraseña desencriptada : ",contra_desencript)
+            return True
+        else :
+            return False
+    else :
+        return False
+
+        
+
+            
 
 
 
@@ -72,6 +111,4 @@ def registrar():
 #Se ejecuta siempre
 #Creo que se puede colocar la aqui para que lo guarde en un txt
 if __name__=="__main__":
-    user1 = Usuarios("admin","1234")
-    personas = [user1]
     createGUI()
