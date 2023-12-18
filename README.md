@@ -1,4 +1,6 @@
-# APP-AlgoritmoRSA: Descripcion de la Aplicacion de Inicio de Secion con RSA en Python
+# APP-AlgoritmoRSA
+
+# Descripcion de la Aplicacion de Inicio de Secion con RSA en Python
 
 Esta aplicación de inicio de sesión en Python utiliza el algoritmo RSA para proteger las contraseñas de los usuarios durante el proceso de autenticación. A continuación, se proporciona una descripción general de la aplicación y su funcionalidad.
 
