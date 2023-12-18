@@ -5,7 +5,8 @@
 3. Abrir APP-Use_RSA_Algoritm con la terminal 
 4. En la terminal ejecutar "py .\App.py ".
 
-#INSTRUCCIONES DE USO
+INSTRUCCIONES DE USO:
+
 -El login acepta un usuario y una contraseña. Reconoce entre mayúscula y minúsculas.
 -Credenciales ya existentes: User: admin   Password: 12345.
 -En caso de querer crear nuevas credenciales, ingresar un nuevo usuario y una nueva contraseña y pulsar "Registrar".
