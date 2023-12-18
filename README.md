@@ -2,7 +2,7 @@
 
 Esta aplicación de inicio de sesión en Python utiliza el algoritmo RSA para proteger las contraseñas de los usuarios durante el proceso de autenticación. A continuación, se proporciona una descripción general de la aplicación y su funcionalidad.
 
-##Caracteristicas Principales:
+## Caracteristicas Principales:
 
 1. **Generacion de Claves RSA:**
    - La aplicacion genera un par de claves RSA (pública y privada) a traves de funciones de aritmetica modular, se encuentra en el script algorithms.py.
@@ -13,7 +13,7 @@ Esta aplicación de inicio de sesión en Python utiliza el algoritmo RSA para pr
 4. **Verificacion de Contraseñas:**
    - La contraseña ingresada se compara con la contraseña encriptada guardada en un archivo txt. La funcion se encuentra en el script App.py.
 
-##Como abrir la aplicacion:
+## Como abrir la aplicacion:
 
 1. Abrir la carpeta creada "APP-AlgortimoRSA" y abrir la carpeta dentro de esta llamada de la misma manera
 2. Dentro encontramos la carpeta APP-Use_RSA_Algoritm, junto con un archivo README y un archivo .gitignore.
